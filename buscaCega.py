@@ -7,8 +7,12 @@ objetivo
 posicao
 type(posicao)
 filaDeEstados = []
-#Line , colon
-def buscaLargura(posicao, objetivo,mapa):
+listafechada = []
+#back track
+#arvore
+#Line , colon.  Busca gulosa 
+#estrela, glurosa
+def sucessores(posicao, objetivo,mapa):
     
     if posicao[0] - 1 > 0:
         l = posicao[0] - 1
@@ -16,6 +20,8 @@ def buscaLargura(posicao, objetivo,mapa):
         for i in range(-1, 2):
             if c+i>0 or c+i<11:
                 if mapa[l][c+i] == 0:
+                    #add a condicional que se der o ponto
+                    #vermelho ele termina a operação
                     mapa[l][c+i] = 300
                     filaDeEstados.append((l,c+i))
     
@@ -38,10 +44,14 @@ def buscaLargura(posicao, objetivo,mapa):
 
     
     mapaBuca = mapa
+    imprimir_mapa(mapa)
     return mapaBuca
 
 def buscaHeuristica(filaDeEstados):
+    #colocar a carinha na pisão atual
+    #medir a posiçao com menor caminha reta
+    #se chegar em um ponto que não tem saida ele volta
+    
 
     return
 
-buscaLargura(posicao,objetivo,mapa)

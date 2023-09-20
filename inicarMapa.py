@@ -109,7 +109,7 @@ mapa[10][4] = 100
 # cubos vermelho:
 mapa[2][5] = 200
 # cubos azul:
-mapa[10][5] = "X"
+mapa[10][5] = 400
 # Aluno cesupa:
 #mapa[0][0] = 400
 
