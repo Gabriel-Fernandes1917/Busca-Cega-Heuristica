@@ -142,12 +142,13 @@ print(f"A distância entre {ponto1} e {ponto2} na matriz é: {distancia:.2f}")
 
 
 
-for i in range(-1,2):
-   if i!=0:
-    print(i)
+def jose():
+  print("Jose é doido")
 
-lista = []
+def gg():
+  print("kk eka jose")
 
-lista.append((2,15))
-
-lista[0]
+try:
+  jose()
+except:
+  gg()
