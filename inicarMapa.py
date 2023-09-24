@@ -38,25 +38,25 @@ def imprimir_mapa(mapa):
             print('🔟', end=' ')  # Cubo 10
 # Cubo A a J
           elif celula == 11:
-            print(' 1', end=' ')  # Cubo A
+            print('1️⃣', end=' ')  # Cubo A
           elif celula == 12:
-            print(' 2 ', end=' ')  # Cubo B
+            print('2️⃣', end=' ')  # Cubo B
           elif celula == 13:
-            print(' 3', end=' ')  # Cubo C
+            print('3️⃣', end=' ')  # Cubo C
           elif celula == 14:
-            print(' 4 ', end=' ')  # Cubo D
+            print('4️⃣', end=' ')  # Cubo D
           elif celula == 15:
-            print(' 5 ', end=' ')  # Cubo E
+            print('5️⃣', end=' ')  # Cubo E
           elif celula == 16:
-            print('6', end=' ')  # Cubo F
+            print('6️⃣', end=' ')  # Cubo F
           elif celula == 17:
-            print(' 7 ', end=' ')  # Cubo G
+            print('7️⃣', end=' ')  # Cubo G
           elif celula == 18:
-            print(' 8 ', end=' ')  # Cubo H
+            print('8️⃣', end=' ')  # Cubo H
           elif celula == 19:
-            print(' 9 ', end=' ')  # Cubo I
+            print('9️⃣', end=' ')  # Cubo I
           elif celula == 20:
-            print(' 10 ', end=' ')  # Cubo J
+            print('🔟', end=' ')  # Cubo J
         print()  # Nova linha para a próxima linha do mapa
 
 # Tamanho do mapa
