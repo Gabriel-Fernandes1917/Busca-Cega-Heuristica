@@ -19,54 +19,58 @@ borda = [] # já explorados mas não pecorrido
 #estrela, glurosa
 def sucessores(posicao, objetivo,mapa):
     #esta função exploras os pontos ao redor
-    descobertaAtual =[]
-    
-    
-    if posicao[0] - 1 > 0:
-        l = posicao[0] - 1
-        c = posicao[1]
-        for i in range(-1, 2):
-            if c+i>0 or c+i<11:
-                if mapa[l][c+i] == 0:
-                    mapa[l][c+i] = 300
-                    filaDeEstados.append((l,c+i))
-                    descobertaAtual.append((l,c+i))
-                
-                if mapa[l][c+i] == 200:
-                    imprimir_mapa(mapa)
-                    return
-    
-    l = posicao[0]
-    c = posicao[1]
-    for i in range(-1, 2):
-        if c+i>0 or c+i<11:
-            if i!= 0 and mapa[l][c+i] == 0:
-                mapa[l][c+i] = 300
-                filaDeEstados.append((l,c+i))
-                descobertaAtual.append((l,c+i))
-            
-            if mapa[l][c+i] == 200:
-                    imprimir_mapa(mapa)
-                    return
+    descobertaAtual = []
 
-    if posicao[0] + 1 < 11:
-        l = posicao[0] + 1
-        c = posicao[1]
-        for i in range(-1, 2):
-            if c+i>0 or c+i<11:
-                if mapa[l][c+i] == 0:
-                    mapa[l][c+i] = 300
-                    filaDeEstados.append((l,c+i))
-                    descobertaAtual.append((l,c+i))
-                
-                if mapa[l][c+i] == 200:
-                    imprimir_mapa(mapa)
-                    return
+    if len(posicao) > 0:
+
+        if posicao[0] - 1 > 0:
+            l = posicao[0] - 1
+            c = posicao[1]
+            for i in range(-1, 2):
+                if c+i>0 or c+i<11:
+                    if mapa[l][c+i] == 0:
+                        mapa[l][c+i] = 300
+                        filaDeEstados.append((l,c+i))
+                        descobertaAtual.append((l,c+i))
                     
+                    if mapa[l][c+i] == 200:
+                        imprimir_mapa(mapa)
+                        return
+        
+        l = posicao[0]
+        c = posicao[1]
+        for i in range(-1, 2):
+            if c+i>0 or c+i<11:
+                if i!= 0 and mapa[l][c+i] == 0:
+                    mapa[l][c+i] = 300
+                    filaDeEstados.append((l,c+i))
+                    descobertaAtual.append((l,c+i))
                 
+                if mapa[l][c+i] == 200:
+                        imprimir_mapa(mapa)
+                        return
 
-    imprimir_mapa(mapa)
-    buscaHeuristica(descobertaAtual,mapa,objetivo)
+        if posicao[0] + 1 < 11:
+            l = posicao[0] + 1
+            c = posicao[1]
+            for i in range(-1, 2):
+                if c+i>0 or c+i<11:
+                    if mapa[l][c+i] == 0:
+                        mapa[l][c+i] = 300
+                        filaDeEstados.append((l,c+i))
+                        descobertaAtual.append((l,c+i))
+                    
+                    if mapa[l][c+i] == 200:
+                        imprimir_mapa(mapa)
+                        return
+                        
+                    
+
+        imprimir_mapa(mapa)
+        buscaHeuristica(descobertaAtual,mapa,objetivo)
+
+    else:
+        funBorda()
     
 
 def buscaHeuristica(descobertaAtual,mapa,objetivo):
@@ -78,29 +82,33 @@ def buscaHeuristica(descobertaAtual,mapa,objetivo):
     distancias = []
 
     print(descobertaAtual)
+        
     if len(descobertaAtual) > 0:
         for i in range(len(descobertaAtual)):
             distancias.append(math.floor(calcular_distancia_pontos(mapa, descobertaAtual[i], objetivo)))
-        
+            
         for i in range(len(distancias)):
             if distancias[i] == min(distancias):
                 iDoMenorDist = i
                 print(descobertaAtual[iDoMenorDist])
                 listafechada.append(descobertaAtual[iDoMenorDist])
                 print("avança")
+                sucessores(descobertaAtual[iDoMenorDist], objetivo,mapa) 
+                time.sleep(5)    
+    else:
+        return -1
                 
-        time.sleep(5)        
-        sucessores(descobertaAtual[iDoMenorDist], objetivo,mapa) 
-                
+
+sucessores(posicao, objetivo,mapa)       
     
-    elif len(descobertaAtual) == 0:
-        funBorda()
+    # if len(descobertaAtual) == 0:
+    # else:
+    #     funBorda()
         
          
 
 
         
-       
        
 
 
