@@ -19,6 +19,8 @@ borda = [] # já explorados mas não pecorrido
 #estrela, glurosa
 def sucessores(posicao, objetivo,mapa):
     #esta função exploras os pontos ao redor
+    
+    #fazer a verificação de blocos validos(inexporaveis e borda) aqui
     descobertaAtual = []
 
     if len(posicao) > 0:
@@ -81,6 +83,7 @@ def buscaHeuristica(descobertaAtual,mapa,objetivo):
    
     distancias = []
 
+    print(len(descobertaAtual))
     print(descobertaAtual)
         
     if len(descobertaAtual) > 0:
@@ -88,15 +91,18 @@ def buscaHeuristica(descobertaAtual,mapa,objetivo):
             distancias.append(math.floor(calcular_distancia_pontos(mapa, descobertaAtual[i], objetivo)))
             
         for i in range(len(distancias)):
+            #da merda pq é fica em 2 loops ao msm tempo, provavelmente quando da 2 min
             if distancias[i] == min(distancias):
                 iDoMenorDist = i
                 print(descobertaAtual[iDoMenorDist])
                 listafechada.append(descobertaAtual[iDoMenorDist])
                 print("avança")
-                sucessores(descobertaAtual[iDoMenorDist], objetivo,mapa) 
-                time.sleep(5)    
+                x =sucessores(descobertaAtual[iDoMenorDist], objetivo,mapa) 
+                time.sleep(5)  
+                return  
     else:
-        return -1
+        print("voltando")
+        return
                 
 
 sucessores(posicao, objetivo,mapa)       
