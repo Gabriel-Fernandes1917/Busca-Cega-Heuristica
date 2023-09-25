@@ -4,6 +4,7 @@ from inicarMapa import objetivo, posicao
 from distancia2Pontos import calcular_distancia_pontos
 import math
 import time 
+from borda import funBorda
 
 mapa
 objetivo
@@ -75,8 +76,9 @@ def buscaHeuristica(descobertaAtual,mapa,objetivo):
     #colocar a carinha na pisão atual
    
     distancias = []
+
     print(descobertaAtual)
-    if descobertaAtual != []:
+    if len(descobertaAtual) > 0:
         for i in range(len(descobertaAtual)):
             distancias.append(math.floor(calcular_distancia_pontos(mapa, descobertaAtual[i], objetivo)))
         
@@ -86,11 +88,17 @@ def buscaHeuristica(descobertaAtual,mapa,objetivo):
                 print(descobertaAtual[iDoMenorDist])
                 listafechada.append(descobertaAtual[iDoMenorDist])
                 print("avança")
-                time.sleep(5)
-                sucessores(descobertaAtual[iDoMenorDist], objetivo,mapa) 
+                
+        time.sleep(5)        
+        sucessores(descobertaAtual[iDoMenorDist], objetivo,mapa) 
+                
     
-    if descobertaAtual == []:
-        print("voltando")
+    elif len(descobertaAtual) == 0:
+        funBorda()
+        
+         
+
+
         
        
        

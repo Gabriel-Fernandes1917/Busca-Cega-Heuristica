@@ -1,7 +1,5 @@
 
 
-def borda(filaDeEstados, listafechada):
+def funBorda():
     
-    filaDeEstados
-
-    return
+  print("yyyy")
