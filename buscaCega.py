@@ -4,7 +4,6 @@ from inicarMapa import objetivo, posicao
 from distancia2Pontos import calcular_distancia_pontos
 import math
 import time 
-from borda import funBorda
 
 mapa
 objetivo
@@ -22,7 +21,20 @@ def sucessores(posicao, objetivo,mapa):
     
     #fazer a verificação de blocos validos(inexporaveis e borda) aqui
     descobertaAtual = []
+    
+    #Este primeiro laço "calcula as bordas"
+    for i in range(len(filaDeEstados)):
+        # print(listafechada)
+        # print(filaDeEstados)
+        # print(borda)
+        if filaDeEstados[i] not in listafechada:
+            # print("add na borda")
+            # print(filaDeEstados[i])
+            borda.append(filaDeEstados[i])
+            # print(f"borda {borda}")
 
+
+    #explora os sucessores ao redor
     if len(posicao) > 0:
 
         if posicao[0] - 1 > 0:
@@ -30,7 +42,7 @@ def sucessores(posicao, objetivo,mapa):
             c = posicao[1]
             for i in range(-1, 2):
                 if c+i>0 or c+i<11:
-                    if mapa[l][c+i] == 0:
+                    if mapa[l][c+i] == 0 or (l,c+i) in borda:
                         mapa[l][c+i] = 300
                         filaDeEstados.append((l,c+i))
                         descobertaAtual.append((l,c+i))
@@ -43,7 +55,7 @@ def sucessores(posicao, objetivo,mapa):
         c = posicao[1]
         for i in range(-1, 2):
             if c+i>0 or c+i<11:
-                if i!= 0 and mapa[l][c+i] == 0:
+                if i!= 0 and mapa[l][c+i] == 0 or (l,c+i) in borda:
                     mapa[l][c+i] = 300
                     filaDeEstados.append((l,c+i))
                     descobertaAtual.append((l,c+i))
@@ -57,7 +69,7 @@ def sucessores(posicao, objetivo,mapa):
             c = posicao[1]
             for i in range(-1, 2):
                 if c+i>0 or c+i<11:
-                    if mapa[l][c+i] == 0:
+                    if mapa[l][c+i] == 0 or (l,c+i) in borda:
                         mapa[l][c+i] = 300
                         filaDeEstados.append((l,c+i))
                         descobertaAtual.append((l,c+i))
@@ -71,8 +83,6 @@ def sucessores(posicao, objetivo,mapa):
         imprimir_mapa(mapa)
         buscaHeuristica(descobertaAtual,mapa,objetivo)
 
-    else:
-        funBorda()
     
 
 def buscaHeuristica(descobertaAtual,mapa,objetivo):
@@ -96,21 +106,15 @@ def buscaHeuristica(descobertaAtual,mapa,objetivo):
                 iDoMenorDist = i
                 print(descobertaAtual[iDoMenorDist])
                 listafechada.append(descobertaAtual[iDoMenorDist])
+                # funBorda(filaDeEstados, listafechada)
                 print("avança")
-                x =sucessores(descobertaAtual[iDoMenorDist], objetivo,mapa) 
-                time.sleep(5)  
+                time.sleep(1)  
+                sucessores(descobertaAtual[iDoMenorDist], objetivo,mapa) 
                 return  
-    else:
-        print("voltando")
-        return
-                
+   
 
 sucessores(posicao, objetivo,mapa)       
     
-    # if len(descobertaAtual) == 0:
-    # else:
-    #     funBorda()
-        
          
 
 
