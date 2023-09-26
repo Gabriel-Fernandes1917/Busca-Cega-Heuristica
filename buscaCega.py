@@ -44,7 +44,8 @@ def sucessores(posicao, objetivo,mapa):
                 if c+i>0 or c+i<11:
                     if mapa[l][c+i] == 0 or (l,c+i) in borda:
                         mapa[l][c+i] = 300
-                        filaDeEstados.append((l,c+i))
+                        if (l,c+i) not in filaDeEstados:
+                            filaDeEstados.append((l,c+i))
                         descobertaAtual.append((l,c+i))
                     
                     if mapa[l][c+i] == 200:
@@ -57,7 +58,8 @@ def sucessores(posicao, objetivo,mapa):
             if c+i>0 or c+i<11:
                 if i!= 0 and mapa[l][c+i] == 0 or (l,c+i) in borda:
                     mapa[l][c+i] = 300
-                    filaDeEstados.append((l,c+i))
+                    if (l,c+i) not in filaDeEstados:
+                            filaDeEstados.append((l,c+i))
                     descobertaAtual.append((l,c+i))
                 
                 if mapa[l][c+i] == 200:
@@ -71,7 +73,8 @@ def sucessores(posicao, objetivo,mapa):
                 if c+i>0 or c+i<11:
                     if mapa[l][c+i] == 0 or (l,c+i) in borda:
                         mapa[l][c+i] = 300
-                        filaDeEstados.append((l,c+i))
+                        if (l,c+i) not in filaDeEstados:
+                            filaDeEstados.append((l,c+i))
                         descobertaAtual.append((l,c+i))
                     
                     if mapa[l][c+i] == 200:
