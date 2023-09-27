@@ -112,6 +112,7 @@ def buscaHeuristica(descobertaAtual,mapa,objetivo):
             if distancias[i] == min(distancias):
                 iDoMenorDist = i
                 print(descobertaAtual[iDoMenorDist])
+                mapa[descobertaAtual[iDoMenorDist][0]][descobertaAtual[iDoMenorDist][1]] = 300
                 listafechada.append(descobertaAtual[iDoMenorDist])
                 # funBorda(filaDeEstados, listafechada)
                 print("avança")

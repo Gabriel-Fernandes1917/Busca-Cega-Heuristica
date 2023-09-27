@@ -140,6 +140,8 @@ imprimir_mapa(mapa)
 
 x = [(1,2),(3,6),(6,5)]
 
-mapa[]
+i = x[0]
+i[0]
 
-spli
+mapa[x[0][0]][x[0][1]]
+
