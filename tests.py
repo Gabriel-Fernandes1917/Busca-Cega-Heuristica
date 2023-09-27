@@ -136,19 +136,10 @@ ponto2 = (10, 5)
 print("Mapa com cubos:")
 imprimir_mapa(mapa)
 
-# Calcula a distância entre os pontos na matriz
-distancia = calcular_distancia_pontos(inicializar_mapa, ponto1, ponto2)
-print(f"A distância entre {ponto1} e {ponto2} na matriz é: {distancia:.2f}")
 
 
+x = [(1,2),(3,6),(6,5)]
 
-def jose():
-  print("Jose é doido")
+mapa[]
 
-def gg():
-  print("kk eka jose")
-
-try:
-  jose()
-except:
-  gg()
+spli

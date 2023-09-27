@@ -6,8 +6,8 @@ import math
 import time 
 
 mapa
-objetivo
-posicao
+# objetivo
+# posicao
 type(posicao)
 filaDeEstados = [] # locais já explorados
 listafechada = [] # caminho percorrido
@@ -18,7 +18,9 @@ borda = [] # já explorados mas não pecorrido
 #estrela, glurosa
 def sucessores(posicao, objetivo,mapa):
     #esta função exploras os pontos ao redor
-    
+    if posicao == 200:
+        imprimir_mapa(mapa)
+        return
     #fazer a verificação de blocos validos(inexporaveis e borda) aqui
     descobertaAtual = []
     
@@ -43,12 +45,14 @@ def sucessores(posicao, objetivo,mapa):
             for i in range(-1, 2):
                 if c+i>0 or c+i<11:
                     if mapa[l][c+i] == 0 or (l,c+i) in borda:
-                        mapa[l][c+i] = 300
+                        mapa[l][c+i] = 400
                         if (l,c+i) not in filaDeEstados:
                             filaDeEstados.append((l,c+i))
                         descobertaAtual.append((l,c+i))
                     
                     if mapa[l][c+i] == 200:
+                        for i in range(len(listafechada)):
+                            mapa[i]
                         imprimir_mapa(mapa)
                         return
         
@@ -57,7 +61,7 @@ def sucessores(posicao, objetivo,mapa):
         for i in range(-1, 2):
             if c+i>0 or c+i<11:
                 if i!= 0 and mapa[l][c+i] == 0 or (l,c+i) in borda:
-                    mapa[l][c+i] = 300
+                    mapa[l][c+i] = 400
                     if (l,c+i) not in filaDeEstados:
                             filaDeEstados.append((l,c+i))
                     descobertaAtual.append((l,c+i))
@@ -72,7 +76,7 @@ def sucessores(posicao, objetivo,mapa):
             for i in range(-1, 2):
                 if c+i>0 or c+i<11:
                     if mapa[l][c+i] == 0 or (l,c+i) in borda:
-                        mapa[l][c+i] = 300
+                        mapa[l][c+i] = 400
                         if (l,c+i) not in filaDeEstados:
                             filaDeEstados.append((l,c+i))
                         descobertaAtual.append((l,c+i))
