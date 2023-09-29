@@ -6,7 +6,7 @@ import math
 import time 
 
 mapa
-# objetivo
+# objetivo0
 # posicao
 type(posicao)
 filaDeEstados = [] # locais já explorados
@@ -19,6 +19,8 @@ borda = [] # já explorados mas não pecorrido
 def sucessores(posicao, objetivo,mapa):
     #esta função exploras os pontos ao redor
     if posicao == 200:
+        for i in range(len(listafechada)):
+            mapa[listafechada[i][0]][listafechada[i][1]] = 300
         imprimir_mapa(mapa)
         return
     #fazer a verificação de blocos validos(inexporaveis e borda) aqui
@@ -28,12 +30,14 @@ def sucessores(posicao, objetivo,mapa):
     for i in range(len(filaDeEstados)):
         # print(listafechada)
         # print(filaDeEstados)
-        # print(borda)
         if filaDeEstados[i] not in listafechada:
             # print("add na borda")
             # print(filaDeEstados[i])
             borda.append(filaDeEstados[i])
-            # print(f"borda {borda}")
+
+    #mostra os detalhes da busca 
+    print(f"borda: {borda}")
+    print(f"lista fechada {listafechada}")
 
 
     #explora os sucessores ao redor
@@ -45,14 +49,15 @@ def sucessores(posicao, objetivo,mapa):
             for i in range(-1, 2):
                 if c+i>0 or c+i<11:
                     if mapa[l][c+i] == 0 or (l,c+i) in borda:
-                        mapa[l][c+i] = 400
-                        if (l,c+i) not in filaDeEstados:
-                            filaDeEstados.append((l,c+i))
-                        descobertaAtual.append((l,c+i))
+                            mapa[l][c+i] = 400
+                            if (l,c+i) not in filaDeEstados:
+                                filaDeEstados.append((l,c+i))
+                            if mapa[l][c+i] not in listafechada:
+                                descobertaAtual.append((l,c+i))
                     
                     if mapa[l][c+i] == 200:
                         for i in range(len(listafechada)):
-                            mapa[i]
+                            mapa[listafechada[i][0]][listafechada[i][1]] = 300
                         imprimir_mapa(mapa)
                         return
         
@@ -61,12 +66,14 @@ def sucessores(posicao, objetivo,mapa):
         for i in range(-1, 2):
             if c+i>0 or c+i<11:
                 if i!= 0 and mapa[l][c+i] == 0 or (l,c+i) in borda:
-                    mapa[l][c+i] = 400
-                    if (l,c+i) not in filaDeEstados:
-                            filaDeEstados.append((l,c+i))
-                    descobertaAtual.append((l,c+i))
+                        mapa[l][c+i] = 400
+                        if (l,c+i) not in filaDeEstados:
+                                filaDeEstados.append((l,c+i))
+                        if mapa[l][c+i] not in listafechada:
+                            descobertaAtual.append((l,c+i))
                 
                 if mapa[l][c+i] == 200:
+                        mapa[listafechada[i][0]][listafechada[i][1]] = 300
                         imprimir_mapa(mapa)
                         return
 
@@ -76,23 +83,26 @@ def sucessores(posicao, objetivo,mapa):
             for i in range(-1, 2):
                 if c+i>0 or c+i<11:
                     if mapa[l][c+i] == 0 or (l,c+i) in borda:
-                        mapa[l][c+i] = 400
-                        if (l,c+i) not in filaDeEstados:
-                            filaDeEstados.append((l,c+i))
-                        descobertaAtual.append((l,c+i))
+                            mapa[l][c+i] = 400
+                            if (l,c+i) not in filaDeEstados:
+                                filaDeEstados.append((l,c+i))
+                            if mapa[l][c+i] not in listafechada:
+                                descobertaAtual.append((l,c+i))
                     
                     if mapa[l][c+i] == 200:
+                        mapa[listafechada[i][0]][listafechada[i][1]] = 300
                         imprimir_mapa(mapa)
                         return
                         
-                    
+
+        
 
         imprimir_mapa(mapa)
-        buscaHeuristica(descobertaAtual,mapa,objetivo)
+        buscaHeuristica(posicao, descobertaAtual,mapa,objetivo)
 
     
 
-def buscaHeuristica(descobertaAtual,mapa,objetivo):
+def buscaHeuristica(posicao, descobertaAtual,mapa,objetivo):
     #buscaHeuristica: Esta funão verifica qual posição tem a menor distancia reta ate o obj
     # e chama a função susessores para explorar apartid desse ponto
     
@@ -100,8 +110,8 @@ def buscaHeuristica(descobertaAtual,mapa,objetivo):
    
     distancias = []
 
-    print(len(descobertaAtual))
-    print(descobertaAtual)
+    # print(len(descobertaAtual))
+    print(f"Descoberta atual {descobertaAtual}")
         
     if len(descobertaAtual) > 0:
         for i in range(len(descobertaAtual)):
@@ -109,17 +119,23 @@ def buscaHeuristica(descobertaAtual,mapa,objetivo):
             
         for i in range(len(distancias)):
             #da merda pq é fica em 2 loops ao msm tempo, provavelmente quando da 2 min
-            if distancias[i] == min(distancias):
+            if distancias[i] == min(distancias) and distancias[i] not in listafechada:
+                # print(f"lista fechada {listafechada}") 
                 iDoMenorDist = i
-                print(descobertaAtual[iDoMenorDist])
-                mapa[descobertaAtual[iDoMenorDist][0]][descobertaAtual[iDoMenorDist][1]] = 300
+                print(f"Escolheu {descobertaAtual[iDoMenorDist]}")
+                # mapa[descobertaAtual[iDoMenorDist][0]][descobertaAtual[iDoMenorDist][1]] = 300
                 listafechada.append(descobertaAtual[iDoMenorDist])
                 # funBorda(filaDeEstados, listafechada)
-                print("avança")
-                time.sleep(1)  
+                # print("avança")
+                time.sleep(3)  
+                # print("sucessores")
+                # print(descobertaAtual[iDoMenorDist], objetivo,mapa)
                 sucessores(descobertaAtual[iDoMenorDist], objetivo,mapa) 
                 return  
-   
+        return
+    return
+          
+
 
 sucessores(posicao, objetivo,mapa)       
     

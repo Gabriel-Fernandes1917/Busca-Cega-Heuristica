@@ -145,3 +145,6 @@ i[0]
 
 mapa[x[0][0]][x[0][1]]
 
+x = [12,56,23]
+
+if (12 in x or 56 in x) and 23 not in x:

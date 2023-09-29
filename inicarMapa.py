@@ -113,7 +113,7 @@ mapa[10][4] = 100
 mapa[2][5] = 200
 objetivo = (2,5)
 # cubos azul:
-mapa[10][5] = 300
+mapa[10][5] = 500
 posicao = (10,5)
 
 # Imprime o mapa
@@ -156,7 +156,7 @@ if mudar_posicao == 's':
     imprimir_mapa(mapa)
 
 # Pede ao usuário para inserir a linha e coluna do cubo azul
-mudar_posicao = input("Deseja mudar a posição do cubo azul? (s/n): ").lower()
+mudar_posicao = input("Deseja mudar a posição do cubo verde ? (s/n): ").lower()
 
 if mudar_posicao == 's':
     linha_azul = int(input("Insira a linha para o cubo azul (1-11): "))
